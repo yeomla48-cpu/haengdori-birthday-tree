@@ -15,225 +15,264 @@
       min-height: 100vh;
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 50% 5%, rgba(123, 92, 255, 0.45), transparent 28%),
-        radial-gradient(circle at 20% 80%, rgba(255, 122, 160, 0.25), transparent 30%),
-        linear-gradient(to bottom, #05071d, #121846 45%, #271b3d 78%, #0b1020);
+        radial-gradient(circle at 50% 20%, rgba(255, 198, 116, .22), transparent 22%),
+        radial-gradient(circle at 18% 75%, rgba(255, 110, 160, .22), transparent 25%),
+        linear-gradient(to bottom, #050819 0%, #09133a 38%, #2d2453 72%, #0b101f 100%);
     }
 
-    .stars {
+    body::before {
+      content: "";
       position: fixed;
       inset: 0;
-      pointer-events: none;
       background-image:
         radial-gradient(#fff 1px, transparent 1px),
-        radial-gradient(#ffdca8 1px, transparent 1px),
-        radial-gradient(#b9d8ff 1px, transparent 1px);
-      background-size: 36px 36px, 68px 68px, 110px 110px;
-      opacity: .55;
+        radial-gradient(#ffd27a 1px, transparent 1px),
+        radial-gradient(#9bc7ff 1px, transparent 1px);
+      background-size: 38px 38px, 75px 75px, 120px 120px;
+      opacity: .65;
+      pointer-events: none;
       animation: twinkle 4s infinite alternate;
     }
 
     @keyframes twinkle {
-      from { opacity: .35; }
-      to { opacity: .75; }
+      from { opacity: .42; }
+      to { opacity: .8; }
     }
 
-    .shooting-star {
+    .shooting {
       position: fixed;
-      top: 90px;
-      left: -120px;
-      width: 120px;
+      width: 140px;
       height: 2px;
       background: linear-gradient(90deg, transparent, #fff);
+      top: 120px;
+      left: -180px;
       transform: rotate(-25deg);
-      animation: shoot 5s infinite;
-      opacity: .8;
+      animation: shoot 6s infinite;
       pointer-events: none;
     }
 
     @keyframes shoot {
-      0% { transform: translateX(0) translateY(0) rotate(-25deg); opacity: 0; }
-      15% { opacity: 1; }
-      35% { transform: translateX(850px) translateY(250px) rotate(-25deg); opacity: 0; }
+      0% { opacity: 0; transform: translate(0,0) rotate(-25deg); }
+      10% { opacity: 1; }
+      32% { opacity: 0; transform: translate(900px, 280px) rotate(-25deg); }
       100% { opacity: 0; }
     }
 
     .wrap {
       width: 100%;
       max-width: 430px;
-      min-height: 100vh;
       margin: 0 auto;
-      padding: 26px 18px 44px;
+      padding: 24px 16px 38px;
       position: relative;
       z-index: 2;
       text-align: center;
     }
 
-    .date {
+    .date-badge {
       display: inline-block;
-      padding: 8px 20px;
+      margin-top: 4px;
+      padding: 8px 24px;
       border-radius: 999px;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.35);
-      color: #ffe8b9;
-      font-size: 14px;
-      margin-bottom: 14px;
-      backdrop-filter: blur(8px);
+      background: rgba(57, 35, 20, .55);
+      border: 1px solid rgba(255, 218, 148, .75);
+      color: #ffe6b1;
+      box-shadow: 0 0 18px rgba(255, 201, 112, .28);
+      font-weight: bold;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 40px;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      text-shadow: 0 0 18px rgba(255, 232, 180, .9);
+    .title {
+      margin: 18px 0 8px;
+      font-size: 46px;
+      line-height: 1.12;
+      letter-spacing: -2px;
+      color: #fff6dd;
+      text-shadow:
+        0 0 10px #fff1c2,
+        0 0 24px rgba(255, 215, 128, .85),
+        0 0 42px rgba(255, 191, 86, .55);
+    }
+
+    .title .heart {
+      font-size: 34px;
+      vertical-align: middle;
+    }
+
+    .ribbon {
+      display: inline-block;
+      margin: 12px auto 6px;
+      padding: 10px 22px;
+      background: linear-gradient(#fff0d3, #ffd9a7);
+      color: #5c351d;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      border: 1px solid rgba(123, 74, 29, .25);
     }
 
     .sub {
-      margin-top: 15px;
-      font-size: 15px;
-      line-height: 1.8;
-      color: #ffe9c8;
+      margin-top: 12px;
+      color: #ffe8bd;
+      font-size: 14px;
+      line-height: 1.7;
     }
 
     .scene {
+      height: 540px;
       position: relative;
-      height: 470px;
-      margin-top: 10px;
+      margin-top: 8px;
+      overflow: visible;
     }
 
     .moon {
       position: absolute;
-      right: 34px;
-      top: 16px;
+      top: 24px;
+      right: 32px;
       font-size: 42px;
-      filter: drop-shadow(0 0 12px rgba(255,255,210,.8));
-    }
-
-    .tree-wrap {
-      position: absolute;
-      left: 50%;
-      top: 95px;
-      width: 320px;
-      height: 300px;
-      transform: translateX(-50%);
+      filter: drop-shadow(0 0 18px rgba(255, 223, 140, .9));
       z-index: 2;
     }
 
-    .tree-top {
+    .tree {
+      position: absolute;
+      left: 50%;
+      top: 92px;
+      width: 360px;
+      height: 360px;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .crown {
       position: absolute;
       left: 50%;
       top: 0;
-      width: 260px;
-      height: 210px;
+      width: 315px;
+      height: 270px;
       transform: translateX(-50%);
       background:
-        radial-gradient(circle at 35% 35%, #8fd66b, transparent 28%),
-        radial-gradient(circle at 68% 44%, #6dbd50, transparent 34%),
-        radial-gradient(circle at 50% 65%, #47963d 0%, #2d6f32 75%);
-      border-radius: 48% 52% 45% 55% / 55% 50% 50% 45%;
+        radial-gradient(circle at 32% 36%, #486a35 0 22%, transparent 23%),
+        radial-gradient(circle at 65% 34%, #315628 0 26%, transparent 27%),
+        radial-gradient(circle at 48% 58%, #1f4625 0 42%, transparent 43%),
+        radial-gradient(circle at 50% 50%, #15391f 0 70%, transparent 71%);
+      border-radius: 48%;
       box-shadow:
-        inset 0 -18px 30px rgba(0,0,0,.18),
-        0 0 30px rgba(255, 230, 150, .28);
-    }
-
-    .tree-top::before,
-    .tree-top::after {
-      content: "";
-      position: absolute;
-      background: inherit;
-      border-radius: 50%;
-      filter: blur(.2px);
-    }
-
-    .tree-top::before {
-      width: 165px;
-      height: 150px;
-      left: -18px;
-      top: 65px;
-    }
-
-    .tree-top::after {
-      width: 175px;
-      height: 155px;
-      right: -22px;
-      top: 62px;
+        0 0 35px rgba(255, 216, 120, .22),
+        inset 0 -30px 40px rgba(0,0,0,.35);
     }
 
     .trunk {
       position: absolute;
       left: 50%;
-      bottom: 0;
-      width: 68px;
-      height: 125px;
+      top: 170px;
+      width: 86px;
+      height: 190px;
       transform: translateX(-50%);
-      background: linear-gradient(90deg, #6b3e24, #a56a3a, #5a321f);
-      border-radius: 28px 28px 12px 12px;
+      background: linear-gradient(90deg, #5b331e, #a06535, #4b2719);
+      border-radius: 40px 40px 16px 16px;
+      box-shadow: inset -12px 0 18px rgba(0,0,0,.28);
       z-index: -1;
-      box-shadow: inset -10px 0 14px rgba(0,0,0,.2);
     }
 
-    .tree-light {
+    .branch {
       position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #fff4bd;
-      box-shadow: 0 0 12px #ffe48a;
-      animation: blink 1.8s infinite alternate;
+      width: 140px;
+      height: 16px;
+      background: #6d3d23;
+      border-radius: 999px;
+      top: 195px;
+      left: 115px;
+      transform: rotate(-24deg);
+      z-index: -1;
+      opacity: .8;
     }
 
-    @keyframes blink {
-      from { opacity: .35; transform: scale(.8); }
-      to { opacity: 1; transform: scale(1.2); }
+    .branch.b2 {
+      left: 110px;
+      top: 215px;
+      transform: rotate(24deg);
+      width: 150px;
     }
 
-    .character {
+    .lantern {
       position: absolute;
-      z-index: 5;
-      font-size: 70px;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,.35));
+      width: 18px;
+      height: 26px;
+      border-radius: 8px;
+      background: linear-gradient(#fff2a8, #f0a644);
+      box-shadow: 0 0 16px #ffd476;
+      animation: glow 1.6s infinite alternate;
     }
 
-    .boy {
-      left: 24px;
-      bottom: 40px;
+    @keyframes glow {
+      from { opacity: .55; transform: scale(.95); }
+      to { opacity: 1; transform: scale(1.08); }
     }
 
-    .bear {
-      right: 25px;
-      bottom: 38px;
+    .l1 { left: 82px; top: 145px; }
+    .l2 { left: 260px; top: 132px; }
+    .l3 { left: 175px; top: 92px; }
+    .l4 { left: 230px; top: 210px; }
+    .l5 { left: 115px; top: 225px; }
+
+    .character-boy {
+      position: absolute;
+      left: 5px;
+      bottom: 48px;
+      font-size: 86px;
+      z-index: 6;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.55));
+    }
+
+    .character-bear {
+      position: absolute;
+      right: 6px;
+      bottom: 42px;
+      font-size: 88px;
+      z-index: 6;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.55));
     }
 
     .cake {
       position: absolute;
-      right: 92px;
-      bottom: 28px;
-      font-size: 40px;
-      z-index: 5;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,.35));
+      right: 80px;
+      bottom: 38px;
+      font-size: 38px;
+      z-index: 7;
+      filter: drop-shadow(0 8px 15px rgba(0,0,0,.5));
     }
 
     .count-box {
       position: absolute;
       left: 50%;
-      bottom: 0;
-      width: 230px;
+      bottom: 6px;
+      width: 245px;
       transform: translateX(-50%);
-      padding: 12px;
-      border-radius: 22px;
-      background: rgba(0,0,0,.48);
-      border: 1px solid rgba(255,255,255,.28);
+      padding: 13px 14px;
+      background: linear-gradient(135deg, rgba(63,42,22,.88), rgba(30,22,18,.88));
+      border: 1px solid rgba(255, 223, 143, .8);
+      border-radius: 18px;
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.38),
+        0 0 20px rgba(255, 197, 88, .18);
+      z-index: 10;
       backdrop-filter: blur(8px);
-      z-index: 8;
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+
+    .count-label {
+      color: #ffe7b0;
+      font-size: 13px;
     }
 
     .count {
-      font-size: 31px;
-      font-weight: 800;
-      color: #ffe7a7;
-      margin: 2px 0;
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffe39a;
+      margin: 0;
+    }
+
+    .count-small {
+      font-size: 13px;
+      color: #fff6dd;
     }
 
     .fruit {
@@ -243,46 +282,58 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 27px;
+      font-size: 29px;
       cursor: pointer;
-      z-index: 9;
+      z-index: 12;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.45));
       animation: fruitPop .35s ease;
-      filter: drop-shadow(0 6px 8px rgba(0,0,0,.35));
     }
 
     @keyframes fruitPop {
-      from { transform: scale(0) rotate(-20deg); }
+      from { transform: scale(0) rotate(-25deg); }
       to { transform: scale(1) rotate(0); }
     }
 
     .form-card {
-      margin-top: 22px;
-      padding: 24px 18px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.95);
-      color: #4a3328;
-      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+      margin-top: 12px;
+      padding: 24px 18px 20px;
+      background: linear-gradient(#fffdf7, #fff0e5);
+      color: #4d3425;
+      border: 2px solid #f1cdbd;
+      border-radius: 28px;
+      box-shadow:
+        0 14px 35px rgba(0,0,0,.34),
+        inset 0 0 0 1px rgba(255,255,255,.8);
     }
 
     .form-card h2 {
-      margin: 0 0 16px;
-      font-size: 23px;
+      margin: 0 0 18px;
+      font-size: 25px;
+      letter-spacing: -1px;
+    }
+
+    .label-row {
+      text-align: left;
+      font-size: 13px;
+      font-weight: 800;
+      color: #b75e72;
+      margin: 5px 0 7px;
     }
 
     input, textarea {
       width: 100%;
-      border: 1px solid #e8cbbd;
-      border-radius: 17px;
+      border: 1px solid #e6bcae;
+      border-radius: 15px;
       padding: 14px;
-      margin-bottom: 12px;
       font-size: 15px;
       font-family: inherit;
-      background: #fffaf7;
+      background: #fffaf6;
       outline: none;
+      margin-bottom: 13px;
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 108px;
       resize: none;
       line-height: 1.5;
     }
@@ -290,92 +341,92 @@
     .fruit-select {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin: 8px 0 14px;
+      gap: 10px;
+      margin: 4px 0 15px;
     }
 
     .fruit-btn {
-      border: 1px solid #ead0c0;
-      background: #fff7f1;
+      height: 58px;
       border-radius: 16px;
-      padding: 11px 4px;
-      font-size: 25px;
+      border: 1px solid #efcaba;
+      background: #fff8f1;
+      font-size: 27px;
       cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,.05);
     }
 
     .fruit-btn.active {
-      background: #ffe1e7;
-      border: 2px solid #ff7896;
+      border: 2px solid #ff6f93;
+      background: #ffe7ee;
       transform: translateY(-2px);
     }
 
     .submit {
       width: 100%;
       border: none;
-      border-radius: 999px;
-      padding: 15px;
-      font-size: 17px;
-      font-weight: 800;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 900;
       color: white;
-      background: linear-gradient(135deg, #ff7b98, #ff5278);
-      box-shadow: 0 8px 20px rgba(255,82,120,.35);
+      background: linear-gradient(135deg, #ff8fa8, #ff5479);
+      box-shadow: 0 9px 20px rgba(255, 82, 120, .34);
       cursor: pointer;
     }
 
     .footer {
-      margin-top: 22px;
-      color: #ffe8c4;
+      margin-top: 20px;
+      color: #ffe6b2;
       font-size: 13px;
       line-height: 1.7;
+      text-shadow: 0 2px 6px rgba(0,0,0,.55);
     }
 
     .modal {
       display: none;
       position: fixed;
       inset: 0;
-      padding: 24px;
       background: rgba(0,0,0,.58);
       z-index: 99;
+      padding: 24px;
       align-items: center;
       justify-content: center;
     }
 
     .letter {
       width: 100%;
-      max-width: 355px;
-      padding: 26px 22px;
+      max-width: 350px;
+      background: linear-gradient(#fffaf2, #fff0e5);
+      color: #4d3425;
+      border: 1px solid #f0c9b8;
       border-radius: 30px;
-      background:
-        linear-gradient(#fffaf2, #fff1e5);
-      color: #4a3328;
+      padding: 26px 22px;
       text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
       line-height: 1.75;
-      box-shadow: 0 14px 40px rgba(0,0,0,.35);
-      border: 1px solid #f2d5c3;
     }
 
     .letter-title {
-      font-size: 15px;
-      color: #d85d75;
-      font-weight: bold;
+      color: #c25c70;
+      font-weight: 900;
       margin-bottom: 10px;
+      font-size: 15px;
     }
 
     .emoji {
-      font-size: 43px;
+      font-size: 44px;
       margin-bottom: 8px;
     }
 
     .modal-msg {
       white-space: pre-wrap;
       font-size: 16px;
-      color: #4a3328;
     }
 
     .nickname {
-      margin-top: 15px;
+      margin-top: 14px;
       color: #d85d75;
-      font-weight: bold;
+      font-weight: 900;
     }
 
     .modal-actions {
@@ -390,66 +441,79 @@
       border-radius: 999px;
       padding: 12px;
       color: white;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
     }
 
-    .close { background: #d9a15f; }
-    .delete { background: #8f8f8f; }
+    .close { background: #d9a05b; }
+    .delete { background: #777; }
 
     .admin-hint {
-      margin-top: 10px;
+      margin-top: 9px;
+      color: #8b7568;
       font-size: 12px;
-      color: #8b7768;
+    }
+
+    @media (max-width: 380px) {
+      .title { font-size: 40px; }
+      .tree { transform: translateX(-50%) scale(.92); }
+      .scene { height: 500px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="stars"></div>
-  <div class="shooting-star"></div>
+  <div class="shooting"></div>
 
   <main class="wrap">
-    <section class="hero">
-      <div class="date">6월 7일</div>
-      <h1>행도리의<br>생일나무</h1>
-      <div class="sub">
-        축하 한마디가 열매가 됩니다.<br>
-        따뜻한 말 한마디만 남겨주시면<br>
-        소중하게 간직할게요.
-      </div>
-    </section>
+    <div class="date-badge">✦ 6월 7일 ✦</div>
+
+    <h1 class="title">
+      행도리의<br>
+      생일나무 <span class="heart">♡</span>
+    </h1>
+
+    <div class="ribbon">축하 한마디가 열매가 됩니다.</div>
+
+    <div class="sub">
+      여러분의 따뜻한 말 한마디가<br>
+      행도리의 생일나무를 반짝이게 해요.
+    </div>
 
     <section class="scene" id="treeArea">
       <div class="moon">🌙</div>
 
-      <div class="tree-wrap">
-        <div class="tree-top"></div>
+      <div class="tree">
+        <div class="crown"></div>
+        <div class="branch"></div>
+        <div class="branch b2"></div>
         <div class="trunk"></div>
-
-        <span class="tree-light" style="left:85px; top:52px;"></span>
-        <span class="tree-light" style="left:190px; top:45px;"></span>
-        <span class="tree-light" style="left:55px; top:135px;"></span>
-        <span class="tree-light" style="left:245px; top:145px;"></span>
-        <span class="tree-light" style="left:155px; top:110px;"></span>
+        <div class="lantern l1"></div>
+        <div class="lantern l2"></div>
+        <div class="lantern l3"></div>
+        <div class="lantern l4"></div>
+        <div class="lantern l5"></div>
       </div>
 
-      <div class="character boy">🎧</div>
-      <div class="character bear">🐻</div>
+      <div class="character-boy">🎧</div>
+      <div class="character-bear">🐻</div>
       <div class="cake">🎂</div>
 
       <div class="count-box">
-        <div>현재까지</div>
+        <div class="count-label">✦ 현재까지 ✦</div>
         <div class="count" id="count">0</div>
-        <div>개의 축하가 모였어요!</div>
+        <div class="count-small">개의 축하가 모였어요!</div>
       </div>
     </section>
 
     <section class="form-card">
-      <h2>💌 축하 한마디 남기기</h2>
+      <h2>🌷 축하 한마디 남기기 🌷</h2>
 
+      <div class="label-row">🌸 닉네임</div>
       <input id="nameInput" maxlength="12" placeholder="닉네임을 입력해주세요" />
-      <textarea id="messageInput" maxlength="120" placeholder="행도리에게 생일 축하 한마디를 남겨주세요"></textarea>
+
+      <div class="label-row">🌸 축하 멘트</div>
+      <textarea id="messageInput" maxlength="120" placeholder="행도리에게 축하 한마디를 남겨주세요!"></textarea>
 
       <div class="fruit-select">
         <button class="fruit-btn active" data-fruit="🍎">🍎</button>
@@ -458,12 +522,11 @@
         <button class="fruit-btn" data-fruit="🍍">🍍</button>
       </div>
 
-      <button class="submit" id="submitBtn">열매 달기</button>
+      <button class="submit" id="submitBtn">🍎 열매 달기</button>
     </section>
 
     <div class="footer">
-      당신의 따뜻한 말이<br>
-      행도리의 생일나무를 더 풍성하게 만들어줘요.
+      ♡ 당신의 따뜻한 말이 행도리의 생일나무를 더 풍성하게 만들어요.
     </div>
   </main>
 
@@ -526,12 +589,11 @@
     let selectedDocId = null;
 
     const positions = [
-      [183, 112], [124, 132], [234, 140],
-      [86, 182], [165, 178], [270, 190],
-      [112, 234], [220, 238], [286, 256],
-      [150, 282], [250, 298], [74, 268],
-      [190, 322], [118, 330], [285, 330],
-      [155, 70], [220, 82], [95, 105]
+      [165, 132], [110, 165], [220, 166], [78, 215],
+      [250, 220], [145, 230], [190, 265], [105, 285],
+      [235, 295], [160, 85], [212, 104], [100, 112],
+      [265, 135], [65, 150], [285, 180], [188, 204],
+      [130, 250], [230, 250], [155, 310], [255, 330]
     ];
 
     document.querySelectorAll(".fruit-btn").forEach(btn => {
@@ -571,7 +633,7 @@
       }
 
       submitBtn.disabled = false;
-      submitBtn.innerText = "열매 달기";
+      submitBtn.innerText = "🍎 열매 달기";
     });
 
     const q = query(collection(db, "birthdayMessages"), orderBy("createdAt", "asc"));
