@@ -1,0 +1,457 @@
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>행도리의 생일나무</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at top, rgba(109, 92, 255, 0.35), transparent 35%),
+        linear-gradient(to bottom, #06091f, #11183d 45%, #271b3d 75%, #0f1528);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(#fff 1px, transparent 1px),
+        radial-gradient(#ffdca8 1px, transparent 1px);
+      background-size: 40px 40px, 70px 70px;
+      opacity: 0.45;
+      animation: sparkle 4s infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      from { opacity: 0.25; }
+      to { opacity: 0.65; }
+    }
+
+    .wrap {
+      max-width: 430px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      padding: 28px 16px 18px;
+    }
+
+    .date {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.2;
+      text-shadow: 0 0 18px rgba(255, 232, 180, 0.9);
+    }
+
+    .sub {
+      margin-top: 14px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #ffe9c8;
+    }
+
+    .scene {
+      position: relative;
+      height: 420px;
+      margin-top: 12px;
+    }
+
+    .tree {
+      position: absolute;
+      left: 50%;
+      bottom: 35px;
+      transform: translateX(-50%);
+      font-size: 245px;
+      filter: drop-shadow(0 0 20px rgba(255, 223, 140, 0.45));
+      z-index: 1;
+    }
+
+    .boy {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      font-size: 62px;
+      z-index: 3;
+    }
+
+    .bear {
+      position: absolute;
+      right: 22px;
+      bottom: 16px;
+      font-size: 66px;
+      z-index: 3;
+    }
+
+    .cake {
+      position: absolute;
+      right: 90px;
+      bottom: 12px;
+      font-size: 34px;
+      z-index: 3;
+    }
+
+    .count-box {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 230px;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+      z-index: 4;
+    }
+
+    .count {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffe6a8;
+    }
+
+    .fruit {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 5;
+      animation: pop 0.35s ease;
+      filter: drop-shadow(0 5px 8px rgba(0,0,0,0.35));
+    }
+
+    @keyframes pop {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    .form-card {
+      background: rgba(255,255,255,0.94);
+      color: #4a3328;
+      border-radius: 28px;
+      padding: 24px 18px;
+      margin-top: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    .form-card h2 {
+      margin: 0 0 16px;
+      font-size: 23px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid #e7c9b9;
+      border-radius: 16px;
+      padding: 14px;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 12px;
+      font-family: inherit;
+      background: #fffaf7;
+    }
+
+    textarea {
+      min-height: 105px;
+      resize: none;
+    }
+
+    .fruit-select {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 8px 0 14px;
+    }
+
+    .fruit-btn {
+      border: 1px solid #ead0c0;
+      background: #fff7f1;
+      border-radius: 16px;
+      padding: 10px 4px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .fruit-btn.active {
+      background: #ffe1e7;
+      border: 2px solid #ff7896;
+    }
+
+    .submit {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 15px;
+      font-size: 17px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #ff7b98, #ff5278);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 7px 18px rgba(255, 82, 120, 0.35);
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: #ffe8c4;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 99;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .letter {
+      width: 100%;
+      max-width: 350px;
+      background: #fffaf2;
+      color: #4a3328;
+      border-radius: 28px;
+      padding: 26px 22px;
+      text-align: center;
+      box-shadow: 0 12px 38px rgba(0,0,0,0.3);
+      line-height: 1.7;
+    }
+
+    .letter .emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .nickname {
+      font-weight: bold;
+      color: #d85d75;
+      margin-top: 14px;
+    }
+
+    .close {
+      margin-top: 18px;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      background: #d9a15f;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="date">6월 7일</div>
+      <h1>행도리의<br>생일나무</h1>
+      <div class="sub">
+        축하 한마디가 열매가 됩니다.<br>
+        따뜻한 말 한마디만 남겨주시면<br>
+        소중하게 간직할게요.
+      </div>
+    </section>
+
+    <section class="scene" id="treeArea">
+      <div class="tree">🌳</div>
+      <div class="boy">🎧</div>
+      <div class="bear">🐻</div>
+      <div class="cake">🎂</div>
+
+      <div class="count-box">
+        <div>현재까지</div>
+        <div class="count" id="count">0</div>
+        <div>개의 축하가 모였어요!</div>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <h2>💌 축하 한마디 남기기</h2>
+
+      <input id="nameInput" maxlength="12" placeholder="닉네임을 입력해주세요" />
+      <textarea id="messageInput" maxlength="120" placeholder="행도리에게 생일 축하 한마디를 남겨주세요"></textarea>
+
+      <div class="fruit-select">
+        <button class="fruit-btn active" data-fruit="🍎">🍎</button>
+        <button class="fruit-btn" data-fruit="🍑">🍑</button>
+        <button class="fruit-btn" data-fruit="🍉">🍉</button>
+        <button class="fruit-btn" data-fruit="🍍">🍍</button>
+      </div>
+
+      <button class="submit" id="submitBtn">열매 달기</button>
+    </section>
+
+    <div class="footer">
+      당신의 따뜻한 말이<br>
+      행도리의 생일나무를 더 풍성하게 만들어줘요.
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="letter">
+      <div class="emoji" id="modalFruit">🍎</div>
+      <div id="modalMessage"></div>
+      <div class="nickname" id="modalName"></div>
+      <button class="close" onclick="closeModal()">닫기</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      onSnapshot,
+      query,
+      orderBy,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6Wca2IDavR1TLIpWYMz8TIUzttm9vzfXE",
+      authDomain: "hangdori-ab07d.firebaseapp.com",
+      projectId: "hangdori-ab07d",
+      storageBucket: "hangdori-ab07d.firebasestorage.app",
+      messagingSenderId: "797694080049",
+      appId: "1:797694080049:web:6fdf62f9cb4ac9d8255110"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const treeArea = document.getElementById("treeArea");
+    const countEl = document.getElementById("count");
+    const nameInput = document.getElementById("nameInput");
+    const messageInput = document.getElementById("messageInput");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const modal = document.getElementById("modal");
+    const modalFruit = document.getElementById("modalFruit");
+    const modalMessage = document.getElementById("modalMessage");
+    const modalName = document.getElementById("modalName");
+
+    let selectedFruit = "🍎";
+
+    const positions = [
+      [190, 80], [120, 105], [245, 115],
+      [78, 160], [165, 155], [285, 170],
+      [110, 220], [220, 220], [310, 240],
+      [150, 280], [260, 290], [70, 260],
+      [195, 330], [120, 340], [280, 335]
+    ];
+
+    document.querySelectorAll(".fruit-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".fruit-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedFruit = btn.dataset.fruit;
+      });
+    });
+
+    submitBtn.addEventListener("click", async () => {
+      const nickname = nameInput.value.trim() || "익명의 친구";
+      const message = messageInput.value.trim();
+
+      if (!message) {
+        alert("축하 멘트를 적어주세요!");
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "열매 다는 중...";
+
+      try {
+        await addDoc(collection(db, "birthdayMessages"), {
+          nickname,
+          message,
+          fruit: selectedFruit,
+          createdAt: serverTimestamp()
+        });
+
+        nameInput.value = "";
+        messageInput.value = "";
+        alert("행도리의 생일나무에 열매가 열렸어요!");
+      } catch (error) {
+        alert("저장 중 문제가 생겼어요. Firebase 규칙을 확인해주세요.");
+        console.error(error);
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.innerText = "열매 달기";
+    });
+
+    const q = query(collection(db, "birthdayMessages"), orderBy("createdAt", "asc"));
+
+    onSnapshot(q, (snapshot) => {
+      document.querySelectorAll(".fruit").forEach(el => el.remove());
+
+      countEl.innerText = snapshot.size;
+
+      snapshot.docs.forEach((doc, index) => {
+        const data = doc.data();
+        const fruit = document.createElement("div");
+        fruit.className = "fruit";
+        fruit.innerText = data.fruit || "🍎";
+
+        const pos = positions[index % positions.length];
+        fruit.style.left = pos[0] + "px";
+        fruit.style.top = pos[1] + "px";
+
+        fruit.addEventListener("click", () => {
+          modalFruit.innerText = data.fruit || "🍎";
+          modalMessage.innerText = data.message || "";
+          modalName.innerText = "- " + (data.nickname || "익명의 친구") + " -";
+          modal.style.display = "flex";
+        });
+
+        treeArea.appendChild(fruit);
+      });
+    });
+
+    window.closeModal = function () {
+      modal.style.display = "none";
+    };
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+  </script>
+</body>
+</html>
+```
