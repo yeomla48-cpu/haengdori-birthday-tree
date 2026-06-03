@@ -95,10 +95,12 @@
 
     .hero-overlay {
       position: relative;
-      height: 0;
-      min-height: 0;
-      margin: 0;
-      overflow: hidden;
+      min-height: 120px;
+      margin-top: -150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
     }
 
     #treeArea {
@@ -356,7 +358,7 @@
     @media (max-width: 480px) {
       body {
         background-attachment: scroll;
-        background-size: 100% auto;
+        background-size: cover;
         background-position: center top;
         background-repeat: no-repeat;
         background-color: #080a18;
@@ -364,7 +366,7 @@
 
       body::before {
         background:
-          linear-gradient(to bottom, rgba(0,0,0,.04) 0%, rgba(0,0,0,.04) 42vw, #080a18 58vw, #080a18 100%);
+          linear-gradient(to bottom, rgba(0,0,0,.04) 0%, rgba(0,0,0,.10) 64vh, #080a18 100vh, #080a18 100%);
       }
 
       .page {
@@ -378,17 +380,27 @@
       }
 
       .top-space {
-        height: 57vw;
-        min-height: 220px;
-        max-height: 260px;
+        height: 100vh;
+        min-height: 680px;
+        max-height: none;
       }
 
       .hero-overlay {
-        margin: 0;
+        margin-top: -165px;
+        min-height: 120px;
+      }
+
+      .count-box {
+        width: 230px;
+        padding: 12px 13px;
+      }
+
+      .count {
+        font-size: 32px;
       }
 
       .form-card {
-        margin-top: 18px;
+        margin-top: 28px;
         border-radius: 26px;
         padding: 22px 16px 18px;
         background: rgba(255, 253, 248, .96);
@@ -436,7 +448,11 @@
       <div class="top-space"></div>
 
       <section class="hero-overlay" id="treeArea">
-        <span id="count" style="display:none;">0</span>
+        <div class="count-box">
+          <div class="count-label">✦ 현재까지 ✦</div>
+          <div class="count" id="count">0</div>
+          <div class="count-small">개의 축하가 모였어요!</div>
+        </div>
       </section>
 
       <section class="form-card">
