@@ -14,7 +14,9 @@
       color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
-      background: #080a18 url("background.jpg") center top / cover no-repeat fixed;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 190, 110, .14), transparent 28%),
+        linear-gradient(to bottom, #050817 0%, #080a18 100%);
     }
 
     body::before {
@@ -23,9 +25,7 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.16) 45%, rgba(0,0,0,.34)),
-        radial-gradient(circle at 50% 35%, rgba(255,222,150,.12), transparent 35%);
+      background: linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.18));
     }
 
     .page {
@@ -39,13 +39,28 @@
 
     .wrap {
       width: 100%;
-      max-width: 560px;
-      padding: 24px 18px 38px;
+      max-width: 1180px;
+      padding: 0 18px 38px;
       text-align: center;
     }
 
-    .top-space {
-      height: clamp(520px, 72vh, 760px);
+    .visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      border-radius: 0 0 30px 30px;
+      overflow: hidden;
+      background: url("background.jpg") center center / contain no-repeat;
+    }
+
+    .visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.04) 65%, rgba(0,0,0,.28) 100%);
     }
 
     .date-badge {
@@ -94,25 +109,26 @@
     }
 
     .hero-overlay {
-      position: relative;
-      min-height: 120px;
-      margin-top: -150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: absolute;
+      inset: 0;
       overflow: visible;
+      z-index: 2;
     }
 
     #treeArea {
-      position: relative;
-      width: min(100%, 430px);
-      min-height: 150px;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .count-box {
-      position: relative;
+      position: absolute;
+      left: 50%;
+      top: 58%;
+      transform: translate(-50%, -50%);
       width: 252px;
-      margin: 0 auto 12px;
+      margin: 0;
       padding: 13px 14px;
       background:
         linear-gradient(135deg, rgba(83, 52, 28, .93), rgba(31, 22, 18, .93));
@@ -146,17 +162,16 @@
     }
 
     .fruit {
-      display: none;
       position: absolute;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 29px;
       cursor: pointer;
-      z-index: 6;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,.45));
+      z-index: 8;
+      filter: drop-shadow(0 7px 9px rgba(0,0,0,.5));
       animation: fruitPop .35s ease;
     }
 
@@ -166,7 +181,8 @@
     }
 
     .form-card {
-      margin: 0 auto 0;
+      max-width: 680px;
+      margin: 26px auto 0;
       padding: 25px 18px 20px;
       background: rgba(255, 253, 248, .94);
       color: #4d3425;
@@ -331,11 +347,11 @@
 
     @media (min-width: 900px) {
       .wrap {
-        max-width: 720px;
+        max-width: 1180px;
       }
 
-      .top-space {
-        height: clamp(560px, 74vh, 820px);
+      .visual {
+        max-width: 1180px;
       }
 
       .form-card {
@@ -357,16 +373,11 @@
 
     @media (max-width: 480px) {
       body {
-        background-attachment: scroll;
-        background-size: contain;
-        background-position: center top;
-        background-repeat: no-repeat;
         background-color: #080a18;
       }
 
       body::before {
-        background:
-          linear-gradient(to bottom, rgba(0,0,0,.04) 0%, rgba(0,0,0,.10) 64vh, #080a18 100vh, #080a18 100%);
+        background: linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.16));
       }
 
       .page {
@@ -376,27 +387,39 @@
 
       .wrap {
         max-width: 100%;
-        padding: 0 14px 34px;
+        padding: 0 12px 34px;
       }
 
-      .top-space {
-        height: 62vw;
-        min-height: 260px;
-        max-height: 420px;
-      }
-
-      .hero-overlay {
-        margin-top: -40px;
-        min-height: 120px;
+      .visual {
+        width: calc(100% + 24px);
+        margin-left: -12px;
+        margin-right: -12px;
+        border-radius: 0 0 22px 22px;
       }
 
       .count-box {
-        width: 230px;
-        padding: 12px 13px;
+        top: 60%;
+        width: 188px;
+        padding: 9px 10px;
+        border-radius: 14px;
+      }
+
+      .count-label {
+        font-size: 11px;
       }
 
       .count {
-        font-size: 32px;
+        font-size: 25px;
+      }
+
+      .count-small {
+        font-size: 11px;
+      }
+
+      .fruit {
+        width: 28px;
+        height: 28px;
+        font-size: 21px;
       }
 
       .form-card {
@@ -445,13 +468,13 @@
 <body>
   <main class="page">
     <div class="wrap">
-      <div class="top-space"></div>
-
-      <section class="hero-overlay" id="treeArea">
-        <div class="count-box">
-          <div class="count-label">✦ 현재까지 ✦</div>
-          <div class="count" id="count">0</div>
-          <div class="count-small">개의 축하가 모였어요!</div>
+      <section class="visual">
+        <div class="hero-overlay" id="treeArea">
+          <div class="count-box">
+            <div class="count-label">✦ 현재까지 ✦</div>
+            <div class="count" id="count">0</div>
+            <div class="count-small">개의 축하가 모였어요!</div>
+          </div>
         </div>
       </section>
 
@@ -545,9 +568,11 @@
     let selectedDocId = null;
 
     const positions = [
-      [18, 22], [365, 18], [60, 86], [320, 88],
-      [128, 18], [270, 24], [190, 90], [230, 118],
-      [92, 122], [330, 126]
+      [45, 18], [52, 18], [39, 23], [58, 24],
+      [34, 31], [64, 31], [43, 33], [55, 34],
+      [37, 40], [61, 40], [48, 42], [52, 47],
+      [41, 48], [58, 49], [46, 27], [54, 28],
+      [50, 36], [44, 44], [56, 44], [50, 23]
     ];
 
     document.querySelectorAll(".fruit-btn").forEach(btn => {
@@ -603,8 +628,9 @@
         fruit.innerText = data.fruit || "🍎";
 
         const pos = positions[index % positions.length];
-        fruit.style.left = pos[0] + "px";
-        fruit.style.top = pos[1] + "px";
+        fruit.style.left = pos[0] + "%";
+        fruit.style.top = pos[1] + "%";
+        fruit.style.transform = "translate(-50%, -50%)";
 
         fruit.addEventListener("click", () => {
           selectedDocId = docSnap.id;
