@@ -14,10 +14,7 @@
       color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
-      background:
-        radial-gradient(circle at 50% 25%, rgba(255, 207, 112, .28), transparent 24%),
-        radial-gradient(circle at 18% 75%, rgba(255, 118, 170, .22), transparent 28%),
-        linear-gradient(to bottom, #030718 0%, #07133a 36%, #33265c 70%, #08101f 100%);
+      background: #080a18 url("background.jpg") center top / cover no-repeat fixed;
     }
 
     body::before {
@@ -25,55 +22,30 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image:
-        radial-gradient(#fff 1px, transparent 1px),
-        radial-gradient(#ffd27a 1px, transparent 1px),
-        radial-gradient(#9cc7ff 1px, transparent 1px);
-      background-size: 34px 34px, 72px 72px, 118px 118px;
-      opacity: .68;
-      animation: twinkle 4s infinite alternate;
       z-index: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.16) 45%, rgba(0,0,0,.34)),
+        radial-gradient(circle at 50% 35%, rgba(255,222,150,.12), transparent 35%);
     }
 
-    @keyframes twinkle {
-      from { opacity: .42; }
-      to { opacity: .82; }
-    }
-
-    .shooting {
-      position: fixed;
-      top: 95px;
-      left: -180px;
-      width: 160px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #fff, #8dc8ff);
-      transform: rotate(-25deg);
-      animation: shoot 6s infinite;
-      pointer-events: none;
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
       z-index: 1;
-    }
-
-    .shooting.two {
-      top: 190px;
-      animation-delay: 2.7s;
-      width: 120px;
-    }
-
-    @keyframes shoot {
-      0% { opacity: 0; transform: translate(0,0) rotate(-25deg); }
-      12% { opacity: 1; }
-      34% { opacity: 0; transform: translate(850px, 270px) rotate(-25deg); }
-      100% { opacity: 0; }
+      display: flex;
+      justify-content: center;
     }
 
     .wrap {
       width: 100%;
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 24px 16px 38px;
-      position: relative;
-      z-index: 5;
+      max-width: 560px;
+      padding: 24px 18px 38px;
       text-align: center;
+    }
+
+    .top-space {
+      height: clamp(300px, 48vh, 520px);
     }
 
     .date-badge {
@@ -85,11 +57,12 @@
       color: #ffe8b8;
       box-shadow: 0 0 22px rgba(255, 198, 90, .38);
       font-weight: 900;
+      backdrop-filter: blur(8px);
     }
 
     .title {
       margin: 18px 0 8px;
-      font-size: 46px;
+      font-size: clamp(38px, 8vw, 56px);
       line-height: 1.08;
       letter-spacing: -2px;
       color: #fff7dd;
@@ -99,11 +72,9 @@
         0 0 42px rgba(255, 183, 70, .72);
     }
 
-    .heart { font-size: 32px; }
-
     .ribbon {
       display: inline-block;
-      margin: 12px auto 8px;
+      margin: 12px auto 10px;
       padding: 10px 24px;
       border-radius: 999px;
       background: linear-gradient(#fff4d8, #ffdcae);
@@ -114,197 +85,33 @@
     }
 
     .sub {
-      margin-top: 12px;
-      color: #ffe8bd;
+      margin-top: 10px;
+      color: #fff0c8;
       font-size: 14px;
       line-height: 1.75;
-      text-shadow: 0 2px 8px rgba(0,0,0,.45);
+      text-shadow: 0 2px 8px rgba(0,0,0,.55);
+      font-weight: 700;
     }
 
-    .scene {
-      height: 560px;
+    .hero-overlay {
       position: relative;
-      margin-top: 6px;
-      overflow: visible;
+      min-height: 160px;
+      margin-top: -18px;
+      display: flex;
+      align-items: end;
+      justify-content: center;
     }
 
-    .scene::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      width: 430px;
-      height: 150px;
-      transform: translateX(-50%);
-      z-index: 1;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 12% 80%, rgba(255, 158, 201, .42) 0 4px, transparent 5px),
-        radial-gradient(circle at 28% 72%, rgba(255, 217, 122, .38) 0 3px, transparent 4px),
-        radial-gradient(circle at 63% 78%, rgba(255, 158, 201, .42) 0 4px, transparent 5px),
-        radial-gradient(circle at 83% 70%, rgba(255, 217, 122, .38) 0 3px, transparent 4px),
-        linear-gradient(to top, rgba(21, 42, 27, .62), transparent 78%);
-      border-radius: 50% 50% 0 0;
-      opacity: .9;
-    }
-
-    .moon {
-      position: absolute;
-      top: 28px;
-      right: 30px;
-      font-size: 48px;
-      filter:
-        drop-shadow(0 0 14px rgba(255, 225, 145, .9))
-        drop-shadow(0 0 28px rgba(255, 198, 90, .5));
-      z-index: 2;
-    }
-
-    .tree {
-      position: absolute;
-      left: 50%;
-      top: 70px;
-      width: 390px;
-      height: 390px;
-      transform: translateX(-50%);
-      z-index: 6;
-    }
-
-    .crown {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 345px;
-      height: 275px;
-      transform: translateX(-50%);
-      border-radius: 48%;
-      background:
-        radial-gradient(circle at 30% 38%, #4f793a 0 23%, transparent 24%),
-        radial-gradient(circle at 68% 35%, #376a31 0 28%, transparent 29%),
-        radial-gradient(circle at 49% 57%, #25542a 0 46%, transparent 47%),
-        radial-gradient(circle at 50% 50%, #142f1b 0 74%, transparent 75%);
-      box-shadow:
-        0 0 40px rgba(255, 216, 120, .26),
-        inset 0 -32px 42px rgba(0,0,0,.36);
-    }
-
-    .trunk {
-      position: absolute;
-      left: 50%;
-      top: 172px;
-      width: 92px;
-      height: 210px;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #4b291a, #a86634, #3a2017);
-      border-radius: 42px 42px 18px 18px;
-      box-shadow: inset -14px 0 18px rgba(0,0,0,.3);
-      z-index: -1;
-    }
-
-    .branch {
-      position: absolute;
-      width: 160px;
-      height: 17px;
-      top: 200px;
-      left: 112px;
-      transform: rotate(-24deg);
-      border-radius: 999px;
-      background: #5f351f;
-      opacity: .85;
-      z-index: -1;
-    }
-
-    .branch.b2 {
-      top: 222px;
-      left: 110px;
-      transform: rotate(24deg);
-      width: 165px;
-    }
-
-    .lantern {
-      position: absolute;
-      width: 20px;
-      height: 30px;
-      border-radius: 9px;
-      background: linear-gradient(#fff7bd, #f1a33f);
-      box-shadow:
-        0 0 10px #ffd97b,
-        0 0 22px #ffd97b,
-        0 0 36px rgba(255, 196, 80, .5);
-      animation: glow 1.7s infinite alternate;
-      z-index: 4;
-    }
-
-    @keyframes glow {
-      from { opacity: .55; transform: scale(.94); }
-      to { opacity: 1; transform: scale(1.08); }
-    }
-
-    .l1 { left: 82px; top: 145px; }
-    .l2 { left: 275px; top: 132px; }
-    .l3 { left: 180px; top: 88px; }
-    .l4 { left: 238px; top: 220px; }
-    .l5 { left: 112px; top: 230px; }
-    .l6 { left: 55px; top: 205px; }
-    .l7 { left: 305px; top: 205px; }
-
-
-    .side-character {
-      position: fixed;
-      bottom: 0;
-      z-index: 1;
-      pointer-events: none;
-      object-fit: cover;
-      opacity: .92;
-      filter:
-        saturate(1.08)
-        contrast(1.04)
-        drop-shadow(0 24px 44px rgba(0,0,0,.55));
-      -webkit-mask-image:
-        radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,.78) 67%, transparent 100%);
-      mask-image:
-        radial-gradient(ellipse at center, #000 48%, rgba(0,0,0,.78) 67%, transparent 100%);
-    }
-
-    .side-boy {
-      left: 2vw;
-      width: min(34vw, 560px);
-      height: min(82vh, 760px);
-      object-position: center;
-    }
-
-    .side-bear {
-      right: 2vw;
-      width: min(31vw, 510px);
-      height: min(78vh, 720px);
-      object-position: center;
-    }
-
-    .wrap::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 15% 70%, rgba(255, 208, 150, .16), transparent 24%),
-        radial-gradient(circle at 85% 70%, rgba(255, 180, 190, .16), transparent 24%);
-    }
-
-    .cake {
-      position: absolute;
-      right: 82px;
-      bottom: 42px;
-      font-size: 40px;
-      z-index: 8;
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,.5));
+    #treeArea {
+      position: relative;
+      width: min(100%, 430px);
+      min-height: 150px;
     }
 
     .count-box {
-      position: absolute;
-      left: 50%;
-      bottom: 18px;
+      position: relative;
       width: 252px;
-      transform: translateX(-50%);
+      margin: 0 auto 12px;
       padding: 13px 14px;
       background:
         linear-gradient(135deg, rgba(83, 52, 28, .93), rgba(31, 22, 18, .93));
@@ -313,7 +120,7 @@
       box-shadow:
         0 12px 32px rgba(0,0,0,.42),
         0 0 22px rgba(255, 197, 88, .2);
-      z-index: 10;
+      z-index: 5;
       backdrop-filter: blur(10px);
     }
 
@@ -346,7 +153,7 @@
       justify-content: center;
       font-size: 29px;
       cursor: pointer;
-      z-index: 12;
+      z-index: 6;
       filter: drop-shadow(0 8px 10px rgba(0,0,0,.45));
       animation: fruitPop .35s ease;
     }
@@ -357,15 +164,16 @@
     }
 
     .form-card {
-      margin-top: 12px;
+      margin: 8px auto 0;
       padding: 25px 18px 20px;
-      background: linear-gradient(#fffefb, #fff3eb);
+      background: rgba(255, 253, 248, .94);
       color: #4d3425;
       border: 2px solid #f2cab9;
       border-radius: 30px;
       box-shadow:
-        0 16px 42px rgba(0,0,0,.32),
+        0 16px 42px rgba(0,0,0,.34),
         inset 0 0 0 1px rgba(255,255,255,.8);
+      backdrop-filter: blur(8px);
     }
 
     .form-card h2 {
@@ -439,11 +247,12 @@
     }
 
     .footer {
-      margin-top: 20px;
+      margin-top: 18px;
       color: #ffe6b2;
       font-size: 13px;
       line-height: 1.7;
       text-shadow: 0 2px 6px rgba(0,0,0,.55);
+      font-weight: 700;
     }
 
     .modal {
@@ -518,106 +327,100 @@
       font-size: 12px;
     }
 
-    @media (max-width: 380px) {
-      .title { font-size: 40px; }
-      .tree { transform: translateX(-50%) scale(.92); }
-      .scene { height: 510px; }
-
-      .side-character {
-        position: absolute;
-        opacity: .36;
-        z-index: 1;
-        filter: blur(.2px) drop-shadow(0 16px 28px rgba(0,0,0,.55));
+    @media (min-width: 900px) {
+      .wrap {
+        max-width: 720px;
       }
 
-      .side-boy {
-        left: -92px;
-        top: 260px;
-        bottom: auto;
-        width: 190px;
-        height: 190px;
+      .top-space {
+        height: clamp(360px, 47vh, 560px);
       }
 
-      .side-bear {
-        right: -88px;
-        top: 272px;
-        bottom: auto;
-        width: 175px;
-        height: 175px;
+      .form-card {
+        max-width: 680px;
+        padding: 30px 34px 24px;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 14px;
+        align-items: start;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        background-attachment: scroll;
+        background-position: center top;
+      }
+
+      .wrap {
+        max-width: 430px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .top-space {
+        height: 430px;
+      }
+
+      .hero-overlay {
+        margin-top: -36px;
+      }
+
+      .form-card {
+        border-radius: 26px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="shooting"></div>
-  <div class="shooting two"></div>
+  <main class="page">
+    <div class="wrap">
+      <div class="top-space"></div>
 
-  <img class="side-character side-boy" src="boy.png" alt="행도리 캐릭터">
-  <img class="side-character side-bear" src="bear.png" alt="곰돌이 캐릭터">
+      <section class="hero-overlay" id="treeArea">
+        <div class="count-box">
+          <div class="count-label">✦ 현재까지 ✦</div>
+          <div class="count" id="count">0</div>
+          <div class="count-small">개의 축하가 모였어요!</div>
+        </div>
+      </section>
 
-  <main class="wrap">
-    <div class="date-badge">✦ 6월 7일 ✦</div>
+      <section class="form-card">
+        <h2>🌷 축하 한마디 남기기 🌷</h2>
 
-    <h1 class="title">
-      행도리의<br>
-      생일나무 <span class="heart">♡</span>
-    </h1>
+        <div class="form-grid">
+          <div>
+            <div class="label-row">🌸 닉네임</div>
+            <input id="nameInput" maxlength="12" placeholder="닉네임을 입력해주세요" />
+          </div>
 
-    <div class="ribbon">축하 한마디가 열매가 됩니다.</div>
+          <div>
+            <div class="label-row">🌸 축하 멘트</div>
+            <textarea id="messageInput" maxlength="120" placeholder="행도리에게 축하 한마디를 남겨주세요!"></textarea>
+          </div>
+        </div>
 
-    <div class="sub">
-      여러분의 따뜻한 말 한마디가<br>
-      행도리의 생일나무를 반짝이게 해요.
-    </div>
+        <div class="fruit-select">
+          <button class="fruit-btn active" data-fruit="🍎">🍎</button>
+          <button class="fruit-btn" data-fruit="🍑">🍑</button>
+          <button class="fruit-btn" data-fruit="🍉">🍉</button>
+          <button class="fruit-btn" data-fruit="🍍">🍍</button>
+        </div>
 
-    <section class="scene" id="treeArea">
-      <div class="moon">🌙</div>
+        <button class="submit" id="submitBtn">🍎 열매 달기</button>
+      </section>
 
-      <div class="tree">
-        <div class="crown"></div>
-        <div class="branch"></div>
-        <div class="branch b2"></div>
-        <div class="trunk"></div>
-        <div class="lantern l1"></div>
-        <div class="lantern l2"></div>
-        <div class="lantern l3"></div>
-        <div class="lantern l4"></div>
-        <div class="lantern l5"></div>
-        <div class="lantern l6"></div>
-        <div class="lantern l7"></div>
+      <div class="footer">
+        ♡ 당신의 따뜻한 말이 행도리의 생일나무를 더 풍성하게 만들어요.
       </div>
-
-      <div class="cake">🎂</div>
-
-      <div class="count-box">
-        <div class="count-label">✦ 현재까지 ✦</div>
-        <div class="count" id="count">0</div>
-        <div class="count-small">개의 축하가 모였어요!</div>
-      </div>
-    </section>
-
-    <section class="form-card">
-      <h2>🌷 축하 한마디 남기기 🌷</h2>
-
-      <div class="label-row">🌸 닉네임</div>
-      <input id="nameInput" maxlength="12" placeholder="닉네임을 입력해주세요" />
-
-      <div class="label-row">🌸 축하 멘트</div>
-      <textarea id="messageInput" maxlength="120" placeholder="행도리에게 축하 한마디를 남겨주세요!"></textarea>
-
-      <div class="fruit-select">
-        <button class="fruit-btn active" data-fruit="🍎">🍎</button>
-        <button class="fruit-btn" data-fruit="🍑">🍑</button>
-        <button class="fruit-btn" data-fruit="🍉">🍉</button>
-        <button class="fruit-btn" data-fruit="🍍">🍍</button>
-      </div>
-
-      <button class="submit" id="submitBtn">🍎 열매 달기</button>
-    </section>
-
-    <div class="footer">
-      ♡ 당신의 따뜻한 말이 행도리의 생일나무를 더 풍성하게 만들어요.
     </div>
   </main>
 
@@ -680,11 +483,9 @@
     let selectedDocId = null;
 
     const positions = [
-      [165, 132], [110, 165], [220, 166], [78, 215],
-      [250, 220], [145, 230], [190, 265], [105, 285],
-      [235, 295], [160, 85], [212, 104], [100, 112],
-      [265, 135], [65, 150], [285, 180], [188, 204],
-      [130, 250], [230, 250], [155, 310], [255, 330]
+      [18, 22], [365, 18], [60, 86], [320, 88],
+      [128, 18], [270, 24], [190, 90], [230, 118],
+      [92, 122], [330, 126]
     ];
 
     document.querySelectorAll(".fruit-btn").forEach(btn => {
