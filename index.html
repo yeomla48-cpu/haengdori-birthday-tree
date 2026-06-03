@@ -181,6 +181,30 @@
       to { transform: scale(1) rotate(0); }
     }
 
+
+    .music-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 0;
+    }
+
+    .music-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff8fa8, #ff5278);
+      box-shadow: 0 10px 24px rgba(255, 82, 120, .34);
+    }
+
+    .music-btn:active {
+      transform: translateY(1px);
+    }
+
     .form-card {
       max-width: 520px;
       margin: 22px auto 0;
@@ -355,7 +379,31 @@
         max-width: 520px;
       }
 
-      .form-card {
+  
+    .music-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 0;
+    }
+
+    .music-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff8fa8, #ff5278);
+      box-shadow: 0 10px 24px rgba(255, 82, 120, .34);
+    }
+
+    .music-btn:active {
+      transform: translateY(1px);
+    }
+
+    .form-card {
         max-width: 680px;
         padding: 30px 34px 24px;
       }
@@ -419,7 +467,31 @@
         font-size: 21px;
       }
 
-      .form-card {
+  
+    .music-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 18px auto 0;
+    }
+
+    .music-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff8fa8, #ff5278);
+      box-shadow: 0 10px 24px rgba(255, 82, 120, .34);
+    }
+
+    .music-btn:active {
+      transform: translateY(1px);
+    }
+
+    .form-card {
         margin-top: 20px;
         border-radius: 26px;
         padding: 22px 16px 18px;
@@ -474,6 +546,14 @@
           </div>
         </div>
       </section>
+
+      <div class="music-wrap">
+        <button class="music-btn" id="musicBtn" type="button">🎵 음악 켜기</button>
+      </div>
+
+      <audio id="bgm" loop preload="auto">
+        <source src="bgm.mp3" type="audio/mpeg">
+      </audio>
 
       <section class="form-card">
         <h2>🌷 축하 한마디 남기기 🌷</h2>
@@ -560,6 +640,8 @@
     const modalMessage = document.getElementById("modalMessage");
     const modalName = document.getElementById("modalName");
     const deleteBtn = document.getElementById("deleteBtn");
+    const musicBtn = document.getElementById("musicBtn");
+    const bgm = document.getElementById("bgm");
 
     let selectedFruit = "🍎";
     let selectedDocId = null;
@@ -575,6 +657,23 @@
       [43,26],[57,26],
       [47,35],[53,35],[50,24]
     ];
+
+
+    musicBtn.addEventListener("click", async () => {
+      try {
+        if (bgm.paused) {
+          bgm.volume = 0.55;
+          await bgm.play();
+          musicBtn.innerText = "⏸️ 음악 끄기";
+        } else {
+          bgm.pause();
+          musicBtn.innerText = "🎵 음악 켜기";
+        }
+      } catch (error) {
+        alert("브라우저에서 음악 재생이 잠시 막혔어요. 다시 한 번 눌러주세요!");
+        console.error(error);
+      }
+    });
 
     document.querySelectorAll(".fruit-btn").forEach(btn => {
       btn.addEventListener("click", () => {
