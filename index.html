@@ -164,16 +164,18 @@
 
     .fruit {
       position: absolute;
-      width: 38px;
-      height: 38px;
+      width: clamp(30px, 8.8vw, 48px);
+      height: clamp(30px, 8.8vw, 48px);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 29px;
+      font-size: clamp(24px, 7.2vw, 40px);
       cursor: pointer;
-      z-index: 8;
+      z-index: 4;
       filter: drop-shadow(0 7px 9px rgba(0,0,0,.5));
       animation: fruitPop .35s ease;
+      user-select: none;
+      touch-action: manipulation;
     }
 
     @keyframes fruitPop {
@@ -462,9 +464,9 @@
       }
 
       .fruit {
-        width: 26px;
-        height: 26px;
-        font-size: 21px;
+        width: 34px;
+        height: 34px;
+        font-size: 29px;
       }
 
   
@@ -647,16 +649,31 @@
     let selectedDocId = null;
 
     const positions = [
-      [45,18],[50,17],[55,18],
-      [39,23],[61,23],
-      [35,29],[65,29],
-      [42,31],[50,30],[58,31],
-      [38,37],[62,37],
-      [45,40],[55,40],
-      [50,45],
-      [43,26],[57,26],
-      [47,35],[53,35],[50,24]
+      // 글자/카운트 박스를 최대한 피해서 넓게 배치한 좌표예요.
+      // [가로%, 세로%] 값이라 모바일에서도 비율대로 움직입니다.
+      [22,18],[38,16],[62,16],[78,18],
+      [18,27],[34,25],[50,24],[66,25],[82,27],
+      [14,36],[30,34],[46,33],[62,34],[78,36],
+      [20,46],[36,44],[54,43],[70,44],[84,46],
+      [16,57],[32,55],[48,54],[64,55],[80,57],
+      [24,68],[42,66],[58,66],[76,68],
+      [34,79],[50,76],[66,79],
+      [50,88]
     ];
+
+    function getFruitPosition(index) {
+      const base = positions[index % positions.length];
+      const round = Math.floor(index / positions.length);
+
+      // 열매가 32개를 넘어가면 같은 자리 완전 겹침을 줄이려고 살짝 옆으로 밀어요.
+      const offsetX = round === 0 ? 0 : ((round % 3) - 1) * 3;
+      const offsetY = round === 0 ? 0 : (round % 2 === 0 ? 2 : -2);
+
+      return [
+        Math.max(8, Math.min(92, base[0] + offsetX)),
+        Math.max(12, Math.min(90, base[1] + offsetY))
+      ];
+    };
 
 
     musicBtn.addEventListener("click", async () => {
@@ -727,7 +744,7 @@
         fruit.className = "fruit";
         fruit.innerText = data.fruit || "🍎";
 
-        const pos = positions[index % positions.length];
+        const pos = getFruitPosition(index);
         fruit.style.left = pos[0] + "%";
         fruit.style.top = pos[1] + "%";
         fruit.style.transform = "translate(-50%, -50%)";
